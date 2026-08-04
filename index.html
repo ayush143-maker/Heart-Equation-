@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heart Equation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink-1:#ffd3e0; --pink-2:#ff9ec4; --pink-3:#ff6fa5;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:#000; min-height:100vh; overflow:hidden;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:6px; font-family:'Cormorant Garamond',serif;
+    cursor: pointer; /* Indicates interactivity for music start */
+  }
+  /* ---- Stylish title with SOFT PINK gradient ---- */
+  h1{
+    font-family:'Dancing Script',cursive;
+    font-size:clamp(2.2rem,6vw,3.4rem); font-weight:700; letter-spacing:1px;
+    background:linear-gradient(90deg,var(--pink-1),var(--pink-2),var(--pink-3),var(--pink-2));
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+    filter:drop-shadow(0 0 14px rgba(255,158,196,.35));
+    user-select: none;
+  }
+  canvas{display:block}
+  /* ---- Equation in elegant italic, soft pink ---- */
+  .equation,.kval{
+    font-style:italic; text-align:center;
+    background:linear-gradient(90deg,var(--pink-2),var(--pink-1),var(--pink-2));
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+    user-select: none;
+  }
+  .equation{font-size:clamp(1.05rem,3.4vw,1.5rem)}
+  .kval{font-size:clamp(.95rem,3vw,1.25rem)}
+  .sqrt .rad{border-top:1.5px solid var(--pink-2); padding-top:1px}
+  sup{font-size:.62em}
+  
+  /* Optional: subtle hint that clicking starts music */
+  .hint {
+    position: absolute;
+    bottom: 10px;
+    font-size: 0.8rem;
+    color: #555;
+    opacity: 0.7;
+    pointer-events: none;
+    transition: opacity 0.5s;
+  }
+</style>
+</head>
+<body>
+
+<!-- Audio Element -->
+<audio id="bgMusic" loop>
+  <source src="musicplay.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<h1>Heart Equation</h1>
+<canvas id="cv"></canvas>
+<div class="equation">
+  y = |x|<sup>2/3</sup> + 0.9&thinsp;sin(kx)&#8201;<span class="sqrt">&#8730;<span class="rad">3 &minus; x&sup2;</span></span>
+</div>
+<div class="kval">k = <span id="kv">0.00</span></div>
+<div class="hint" id="musicHint">Tap anywhere to play music! </div>
+
+<script>
+/* --- AUDIO LOGIC --- */
+const audio = document.getElementById('bgMusic');
+const hint = document.getElementById('musicHint');
+let audioStarted = false;
+
+// Set volume to 30%
+audio.volume = 0.4;
+
+function startMusic() {
+  if (!audioStarted) {
+    audio.play().then(() => {
+      audioStarted = true;
+      if(hint) hint.style.opacity = '0'; // Hide hint after playing
+    }).catch(err => console.log("Audio play failed:", err));
+  }
+}
+
+// Start music on first interaction (click or touch)
+document.addEventListener('click', startMusic, { once: true });
+document.addEventListener('touchstart', startMusic, { once: true });
+/* ------------------ */
+
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d'),kvEl=document.getElementById('kv');
+const DPR=Math.min(window.devicePixelRatio||1,2);
+const R3=Math.sqrt(3);
+const BROAD=1.18;   /* slightly broader heart */
+const VERT =0.95;   /* slightly less tall */
+let W,H,cx,cy,unit;
+
+function resize(){
+  const cssW=Math.min(innerWidth*0.92,720), cssH=cssW*0.80;
+  cv.style.width=cssW+'px'; cv.style.height=cssH+'px';
+  cv.width=cssW*DPR; cv.height=cssH*DPR;
+  W=cv.width; H=cv.height; cx=W/2; cy=H/2+0.35*(H/5.2); unit=H/5.2;
+}
+addEventListener('resize',resize); resize();
+
+function line(a,b,c,d){ctx.beginPath();ctx.moveTo(a,b);ctx.lineTo(c,d);ctx.stroke();}
+function arrow(x,y,ang){
+  ctx.save();ctx.translate(x,y);ctx.rotate(ang);ctx.fillStyle='#fff';
+  ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(-10*DPR,4*DPR);ctx.lineTo(-10*DPR,-4*DPR);ctx.closePath();ctx.fill();ctx.restore();
+}
+function drawAxes(){
+  const ax=2.7*unit, t=0.09*unit;
+  ctx.save();
+  ctx.strokeStyle='#3f8efc'; ctx.lineWidth=1.4*DPR;
+  line(cx-ax,cy,cx+ax,cy);                 /* x-axis */
+  line(cx,cy+2.1*unit,cx,cy-2.6*unit);     /* y-axis */
+  [-2,-1,1,2].forEach(v=>line(cx+v*unit*BROAD,cy-t,cx+v*unit*BROAD,cy+t));
+  [-1,1,2].forEach(v=>line(cx-t,cy-v*unit*VERT,cx+t,cy-v*unit*VERT));
+  arrow(cx+ax+8*DPR,cy,0); arrow(cx-ax-8*DPR,cy,Math.PI);
+  arrow(cx,cy-2.6*unit-8*DPR,-Math.PI/2); arrow(cx,cy+2.1*unit+8*DPR,Math.PI/2);
+  ctx.restore();
+}
+function drawHeart(k){
+  /* SAME soft pink gradient as the title text */
+  const g=ctx.createLinearGradient(cx-2*unit,0,cx+2*unit,0);
+  g.addColorStop(0,'#ffd3e0');g.addColorStop(.35,'#ff9ec4');
+  g.addColorStop(.65,'#ff6fa5');g.addColorStop(1,'#ffc2d6');
+  ctx.save();
+  ctx.strokeStyle=g; ctx.lineWidth=2*DPR; ctx.lineJoin='round';
+  ctx.shadowColor='rgba(255,120,170,.55)'; ctx.shadowBlur=10*DPR;
+  ctx.beginPath();
+  let first=true;
+  for(let x=-R3+1e-4;x<=R3-1e-4;x+=0.0009){
+    const y=Math.pow(Math.abs(x),2/3)+0.9*Math.sin(k*x)*Math.sqrt(3-x*x);
+    const px=cx+x*unit*BROAD, py=cy-y*unit*VERT;
+    first?ctx.moveTo(px,py):ctx.lineTo(px,py); first=false;
+  }
+  ctx.stroke(); ctx.restore();
+}
+
+/* ---- PING-PONG LOOP: k goes 0 -> 50 -> 0 -> 50 ... forever ---- */
+let k=0, dir=1, hold=0;
+function frame(){
+  ctx.clearRect(0,0,W,H);
+  drawAxes(); drawHeart(k);
+  if(hold>0){
+    if(--hold===0) dir*=-1;          /* after short pause, reverse direction */
+  } else {
+    k += 0.3*dir;
+    if(k>=50){ k=50; hold=60; }      /* pause at 50, then go back down */
+    if(k<=0 ){ k=0;  hold=60; }      /* pause at 0, then go back up */
+  }
+  kvEl.textContent=k.toFixed(2);
+  requestAnimationFrame(frame);
+}
+frame();
+</script>
+</body>
+</html>
