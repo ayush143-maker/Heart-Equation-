@@ -1,6 +1,6 @@
 # Heart-Equation-
 
-An interactive mathematical-art page built around a heart curve. A parameter control lets visitors explore changes to the visual result; the repository also includes an audio asset and a tap-to-play prompt.
+An interactive mathematical-art page built around a heart curve. Use the parameter control to explore changes to the visual result. The repository also includes an audio asset and a tap-to-play prompt; playback may depend on browser audio policies.
 
 ## Preview locally
 
@@ -12,4 +12,4 @@ Then visit http://localhost:8000.
 
 ## Exploring the equation
 
-Use the parameter control to explore the visual result. Keep mathematical labels and output in sync when changing the equation or controls.
+Keep mathematical labels and output in sync when changing the equation or controls.
