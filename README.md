@@ -27,3 +27,14 @@ Use these actions as a review guide; they are not verified results.
 - Try the tap-to-play prompt. If audio does not start, interact with the page again; browser audio policies may require user interaction. Check that the `musicplay.mp3` reference matches the top-level file location.
 - Inspect the page at a narrow phone-sized viewport and a wide desktop-sized viewport. Check that the parameter control, labels, and heart visual remain visible and usable.
 - If you changed typography, check that the Google Fonts links and corresponding styles in `index.html` remain aligned.
+
+## Accessibility review checklist
+
+Use these as future review steps, not verified results.
+
+- Try the parameter control and any audio interaction using only a keyboard. Check that the control can be reached and operated without a pointer or tap.
+- Check that keyboard focus is visible on the parameter control and any playback control against the page background.
+- Review the parameter control's label and instructions so they explain what changing the value does; check that any audio control has a meaningful name and communicates its purpose.
+- Check contrast for the mathematical labels, control text, and other page text against their backgrounds.
+- Consider whether the heart curve communicates information that needs a concise text equivalent, and check text alternatives for any images added to the page.
+- Check any animation or transitions with reduced motion requested and consider reducing nonessential movement.
