@@ -4,7 +4,7 @@ An interactive mathematical-art page built around a heart curve. The top-level `
 
 ## Preview and review locally
 
-Open `index.html` in a modern browser; no package installation is required. To serve the page over HTTP, run this from the repository directory:
+Open `index.html` in a browser; no package installation is required. To serve the page over HTTP, run this from the repository directory:
 
     python -m http.server 8000
 
