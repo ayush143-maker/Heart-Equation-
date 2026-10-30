@@ -18,6 +18,10 @@ The page title is “Heart Equation”. To personalize its visible text or color
 
 The audio file is at the repository root as `musicplay.mp3`. Preserve that location or update the audio reference in `index.html` if you move or replace it.
 
+## Contributor handoff
+
+Keep edits focused on the requested page content, heart-curve presentation, parameter control, or related audio. Preserve existing filenames and relative references, including the root-level `musicplay.mp3` reference, or update `index.html` if a file must move. In the handoff, briefly describe the files and content changed. Manually open the page and review the affected control, visual result, and audio interaction before publishing; this is a review step, not a claim that a review has already been completed.
+
 ## Troubleshooting
 
 Use these as diagnostic steps, not as claims that the page currently has a problem:
