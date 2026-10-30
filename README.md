@@ -51,3 +51,9 @@ These are future review steps, not verified compatibility or accessibility resul
 - [ ] Inspect narrow phone-sized and wide desktop-sized viewports for clipping or overflow.
 - [ ] Consider whether the heart curve needs a concise text equivalent, and check text alternatives for any images added to the page.
 - [ ] Check any animation or transitions with reduced motion requested and consider reducing nonessential movement.
+
+## Final release review
+
+- Open `index.html` from the published location and confirm the page loads as expected.
+- Test with network access available and keep a sensible fallback for externally loaded resources.
+- Review the published result once on a narrow screen and once on a wider screen; treat this as a release check, not an automated test report.
