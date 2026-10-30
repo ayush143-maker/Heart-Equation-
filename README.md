@@ -18,9 +18,13 @@ The page title is “Heart Equation”. To personalize its visible text or color
 
 The audio file is at the repository root as `musicplay.mp3`. Preserve that location or update the audio reference in `index.html` if you move or replace it.
 
+## Configuration and data handling
+
+This repository is a static page with no environment template or backend configuration listed. Keep credentials and private values out of tracked files; any values embedded in `index.html` are delivered to visitors and cannot be secret. The page's text and root-level `musicplay.mp3` are part of its client-facing content, so review them before sharing or publishing the page. The linked Google Fonts are retrieved from an external service by visitors' browsers.
+
 ## Browser and layout review checklist
 
-This is a checklist for future review, not a report of completed browser testing or verified results.
+This is a checklist for future review, not a report of completed browser compatibility testing or verified results.
 
 - Open `index.html` in current versions of browsers relevant to the page's intended audience. Also review it through the local server above to check asset paths in a served-page context.
 - Try the parameter control and check that the heart-curve presentation and mathematical labels correspond to the selected parameter.
