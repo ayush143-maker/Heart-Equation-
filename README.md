@@ -10,47 +10,44 @@ No package installation is required. Open `index.html` in a browser, or serve th
 python -m http.server 8000
 ```
 
-Then visit http://localhost:8000. No deployment configuration is documented; serve the page and audio as static files with their relative paths intact.
+Then visit <http://localhost:8000>. No build scripts or deployment configuration are listed in this repository.
 
 ## Personalizing the page
 
-The page title is “Heart Equation”. To personalize its visible text or colors, make the related edits in `index.html` while preserving the heart-curve presentation and parameter control. If you change the equation or control, keep its mathematical labels consistent with the resulting visual output. The page links to Dancing Script and Cormorant Garamond through Google Fonts; keep those links aligned with any changes to the corresponding font styling.
+The page title is “Heart Equation”. To personalize its visible text or colors, edit the related content in `index.html` while preserving the heart-curve presentation and parameter control. If you change the equation or control, keep the mathematical labels consistent with the resulting visual output.
+
+The page requests Dancing Script and Cormorant Garamond from Google Fonts. Keep those links aligned with changes to the corresponding font styling. These are external requests and require network access in visitors’ browsers.
 
 The audio file is at the repository root as `musicplay.mp3`. Preserve that location or update the audio reference in `index.html` if you move or replace it.
 
-## Contributor handoff
+## Deployment-readiness checklist
 
-Keep edits focused on the requested page content, heart-curve presentation, parameter control, or related audio. Preserve existing filenames and relative references, including the root-level `musicplay.mp3` reference, or update `index.html` if a file must move. In the handoff, briefly describe the files and content changed. Manually open the page and review the affected control, visual result, and audio interaction before publishing; this is a review step, not a claim that a review has already been completed.
+These are recommendations for preparing and reviewing a published copy, not a record of a deployment or completed checks. This repository lists no deployment provider, build process, or deployment configuration; follow the instructions for the publishing workflow you choose without assuming a particular host or output directory.
+
+- [ ] **Confirm the entry file and output directory.** The project entry page is the top-level `index.html`. Check which directory your chosen publishing workflow actually publishes. If it uses a separate output or copied directory, confirm that the published directory contains `index.html` and the files it references; do not assume the repository root is automatically the published output.
+- [ ] **Keep local asset paths intact.** The audio file is `musicplay.mp3` at the repository root. Keep it alongside the published `index.html`, or update the reference in `index.html` if its location changes. Check that local references are relative paths that resolve from the published page, not paths that only work on your own computer.
+- [ ] **Review external requests.** The page requests Google Fonts from `fonts.googleapis.com` and `fonts.gstatic.com`. Confirm these requests are intentional and remember that the fonts may not load without network access.
+- [ ] **Review configuration and content for safety.** No separate configuration file or environment template is listed. Do not place passwords, tokens, or other secrets in `index.html` or other files delivered to visitors. Review the page and audio content before making them public.
+- [ ] **Preview after publishing.** Once the publishing workflow provides a preview, open the published page rather than relying only on a local preview. Check that the root page loads, the heart curve and parameter control work, and the audio file can be requested from its published relative path. Inspect browser diagnostics for failed requests. Try audio interaction; browser audio policies may require user interaction.
+- [ ] **Check the published layout.** Review the page at narrow and wide viewport sizes. Check that the heart visual, labels, and control remain visible and usable without clipping or overflow.
 
 ## Troubleshooting
 
-Use these as diagnostic steps, not as claims that the page currently has a problem:
+Use these as diagnostic steps, not as claims that the page currently has a problem.
 
-1. **Confirm the entry page.** Open the top-level `index.html`, or serve the repository directory and visit its root URL. Check that the server is serving this project if the heart page does not appear.
-2. **Check paths and local files.** Preserve relative paths for local assets. The audio is at the repository root as `musicplay.mp3`; if playback cannot load, check that the file is present there and that its reference in `index.html` matches. Apply the same existence-and-path check to any other local assets.
+1. **Confirm the entry page.** Open the top-level `index.html`, or serve the repository directory and visit its root URL. For a published copy, check that the selected output directory includes and serves the page entry file.
+2. **Check local files and paths.** The audio is at the repository root as `musicplay.mp3`. If playback cannot load, check that the file is present in the published files and that its reference in `index.html` matches its location. Apply the same path check to any other local assets.
 3. **Inspect browser diagnostics.** Check the console while loading the page, changing the parameter, or trying playback. In the Network panel, inspect failed requests and URLs to distinguish local-file problems from other loading errors.
-4. **Distinguish external fonts.** Dancing Script and Cormorant Garamond are requested from Google Fonts and depend on network access to that service. Check these requests separately from the local audio request and confirm remote requests are intentional. If audio does not start, interact with the page again; browser audio policies may require user interaction.
+4. **Distinguish external fonts.** The Google Fonts requests depend on network access and are separate from local asset requests. If audio does not start, interact with the page again; browser audio policies may require user interaction.
 
-## Configuration and data handling
+## Browser and accessibility review checklist
 
-This repository is a static page with no environment template or backend configuration listed. Keep credentials and private values out of tracked files; any values embedded in `index.html` are delivered to visitors and cannot be secret. The page's text and root-level `musicplay.mp3` are part of its client-facing content, so review them before sharing or publishing the page. The linked Google Fonts are retrieved from an external service by visitors' browsers.
+These are future review steps, not verified compatibility or accessibility results.
 
-## Browser and layout review checklist
-
-This is a checklist for future review, not a report of completed browser compatibility testing or verified results.
-
-- Try the parameter control and check that the heart-curve presentation and mathematical labels correspond to the selected parameter.
-- Try the tap-to-play prompt. If audio does not start, interact with the page again; browser audio policies may require user interaction.
-- Inspect the page at a narrow phone-sized viewport and a wide desktop-sized viewport. Check that the parameter control, labels, and heart visual remain visible and usable without clipping or overflow.
-- Review audio and any other media added for appropriate size and use. Before removing assets, confirm they are not referenced.
-
-## Accessibility review checklist
-
-These are future review steps, not verified results.
-
-- Try the parameter control and any audio interaction using only a keyboard. Check that controls can be reached and operated without a pointer or tap.
-- Check that keyboard focus is visible on the parameter control and any playback control against the page background.
-- Review the parameter control's label and instructions so they explain what changing the value does; check that any audio control has a meaningful name and communicates its purpose.
-- Check contrast for mathematical labels, control text, and other page text against their backgrounds.
-- Consider whether the heart curve communicates information that needs a concise text equivalent, and check text alternatives for any images added to the page.
-- Check any animation or transitions with reduced motion requested and consider reducing nonessential movement.
+- [ ] Try the parameter control and check that the heart-curve presentation and mathematical labels correspond to the selected parameter.
+- [ ] Try the tap-to-play prompt. Check keyboard operation and whether focus is visible on interactive controls.
+- [ ] Review the parameter control’s label and instructions, and check that any audio control has a meaningful name and communicates its purpose.
+- [ ] Check contrast for mathematical labels, control text, and other page text against their backgrounds.
+- [ ] Inspect narrow phone-sized and wide desktop-sized viewports for clipping or overflow.
+- [ ] Consider whether the heart curve needs a concise text equivalent, and check text alternatives for any images added to the page.
+- [ ] Check any animation or transitions with reduced motion requested and consider reducing nonessential movement.
