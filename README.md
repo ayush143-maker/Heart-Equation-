@@ -4,11 +4,11 @@ An interactive mathematical-art page built around a heart curve. A parameter con
 
 ## Preview locally
 
-Open `index.html` in a modern browser. No package installation is required. To serve the page over HTTP:
+Open `index.html` in a modern browser; no package installation is required. To serve the page over HTTP, run this from the repository directory:
 
     python -m http.server 8000
 
-Visit http://localhost:8000.
+Then visit http://localhost:8000.
 
 ## Exploring the equation
 
