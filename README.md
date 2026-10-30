@@ -8,4 +8,6 @@ Open `index.html` in a browser; no package installation is required. To serve th
 
     python -m http.server 8000
 
-Then visit http://localhost:8000. After changing the equation or controls, use the parameter control to review the visual result and keep mathematical labels and output in sync.
+Then visit http://localhost:8000. After changing the equation or controls, use the parameter control to review the visual result and keep mathematical labels and output in sync. If audio does not play, try the tap-to-play prompt; browser audio policies can require interaction.
+
+No hosting provider or provider-specific deployment steps are documented. Serve the page and its audio file as static files, preserving their relative paths.
