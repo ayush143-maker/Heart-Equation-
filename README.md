@@ -10,10 +10,20 @@ No package installation is required. Open `index.html` in a browser, or serve th
 python -m http.server 8000
 ```
 
-Then visit http://localhost:8000. After changing the equation or controls, use the parameter control to review the result and keep mathematical labels and output in sync. If audio does not play, try the tap-to-play prompt. No deployment configuration is documented; serve the page and audio as static files with their relative paths intact.
+Then visit http://localhost:8000. No deployment configuration is documented; serve the page and audio as static files with their relative paths intact.
 
 ## Personalizing the page
 
 The page title is “Heart Equation”. To personalize its visible text or colors, make the related edits in `index.html` while preserving the heart-curve presentation and parameter control. If you change the equation or control, keep its mathematical labels consistent with the resulting visual output. The page links to Dancing Script and Cormorant Garamond through Google Fonts; keep those links aligned with any changes to the corresponding font styling.
 
-The audio file is at the repository root as `musicplay.mp3`. Preserve that location or update the audio reference in `index.html` if you move or replace it. Check the tap-to-play prompt during review, since browser audio policies may require interaction.
+The audio file is at the repository root as `musicplay.mp3`. Preserve that location or update the audio reference in `index.html` if you move or replace it.
+
+## Manual review checklist
+
+Use these actions as a review guide; they are not verified results.
+
+- Open the known entry page, `index.html`, in a browser, or visit `http://localhost:8000` after starting the local server above.
+- Try the parameter control and check that the heart-curve presentation and mathematical labels correspond to the selected parameter.
+- Try the tap-to-play prompt. If audio does not start, interact with the page again; browser audio policies may require user interaction. Check that the `musicplay.mp3` reference matches the top-level file location.
+- Inspect the page at a narrow phone-sized viewport and a wide desktop-sized viewport. Check that the parameter control, labels, and heart visual remain visible and usable.
+- If you changed typography, check that the Google Fonts links and corresponding styles in `index.html` remain aligned.
