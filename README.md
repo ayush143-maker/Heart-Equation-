@@ -1,19 +1,17 @@
 # Heart-Equation-
 
-An interactive mathematical-art page that visualizes the heart equation and exposes a parameter control. The page also includes an audio element and a tap-to-play prompt.
+**Heart-Equation-** is an interactive mathematical-art page built around the familiar heart curve. Rather than presenting the equation as a static diagram, the page turns it into a visual experience and exposes a parameter control for exploring how the result changes.
 
-## Run locally
+The repository also includes an audio asset and a tap-to-play prompt, making the page a small multimedia experiment as well as a mathematical visualisation.
 
-Open index.html in a modern browser. If browser restrictions block local assets or APIs, serve the folder over HTTP.
+## Preview locally
 
-## Structure and assets
+Open index.html in a modern browser. No package installation is required. If you want to serve the page over HTTP, run:
 
-`index.html` is the primary entry point. Keep linked images, audio, scripts, and styles in their existing relative locations; renaming files may break references.
+    python -m http.server 8000
 
-## Preview and deployment
+Visit http://localhost:8000.
 
-Open the page in a modern browser. If local-file behavior is restricted, start a simple HTTP server from this folder and open the local address in your browser. For static hosting, publish the correct root folder and check asset paths after deployment.
+## Exploring the equation
 
-## Making changes
-
-Test the page after edits and check both phone-sized and desktop-sized viewports. Confirm that buttons and other visible interactions work in the deployed version as well as locally.
+Use the page's parameter control to explore the visual result, and test the interaction on a touch screen as well as with a mouse. Keep the mathematical labels and the visual output in sync whenever the equation or its controls are changed.
