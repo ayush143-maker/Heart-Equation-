@@ -20,13 +20,15 @@ The audio file is at the repository root as `musicplay.mp3`. Preserve that locat
 
 ## Manual review checklist
 
-Use these actions as a review guide; they are not verified results.
+Use these actions as a review guide; they are not verified results or measured performance.
 
-- Open the known entry page, `index.html`, in a browser, or visit `http://localhost:8000` after starting the local server above.
+- Open `index.html` in a browser, or visit `http://localhost:8000` after starting the local server above.
 - Try the parameter control and check that the heart-curve presentation and mathematical labels correspond to the selected parameter.
 - Try the tap-to-play prompt. If audio does not start, interact with the page again; browser audio policies may require user interaction. Check that the `musicplay.mp3` reference matches the top-level file location.
+- Check local image, audio, and font references in `index.html` against files that exist at the referenced paths.
+- Review the audio and any other media added for appropriate size and use. Avoid oversized files, and remove assets only after confirming they are not referenced.
+- The page links to Dancing Script and Cormorant Garamond through Google Fonts. Confirm that this external font dependency is intentional and the linked families are used. Keep the links and corresponding styles aligned when changing typography; review any external script references before adding or retaining them.
 - Inspect the page at a narrow phone-sized viewport and a wide desktop-sized viewport. Check that the parameter control, labels, and heart visual remain visible and usable.
-- If you changed typography, check that the Google Fonts links and corresponding styles in `index.html` remain aligned.
 
 ## Accessibility review checklist
 
