@@ -1,6 +1,6 @@
 # Heart-Equation-
 
-An interactive mathematical-art page built around a heart curve. The top-level `index.html` contains the page and its parameter control for exploring changes to the visual result. The repository also includes the audio asset `musicplay.mp3` and a tap-to-play prompt; playback may depend on browser audio policies.
+An interactive mathematical-art page built around a heart curve. The top-level `index.html` contains the page and its parameter control for exploring changes to the visual result. The repository also includes the top-level audio file `musicplay.mp3` and a tap-to-play prompt; playback may depend on browser audio policies.
 
 ## Preview locally
 
